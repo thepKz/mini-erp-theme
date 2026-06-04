@@ -1,0 +1,9 @@
+// @material/elevation - disabled
+// @import "~@material/elevation"; // disabled
+
+.tooltip-inner {
+  // @include mdc-elevation(1, $shadow-baseline-color, $shadow-opacity-boost);
+  font-size: .9375rem;
+  font-weight: $headings-font-weight;
+  font-family: $headings-font-family;
+}

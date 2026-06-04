@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{{ title }}</title>
+
+  {% include 'layouts/_header.html' %}
+
+  {% block head %}
+    {% include 'pages/_' + slug + '.head.html' ignore missing %}
+  {% endblock %}
+
+</head>
+
+{% set brand = 'Huma' %}
+{% set prefix = prefix or '' %}
+{% set layout = layout or 'app' %}
+{% set containerClass = containerClass or 'container-fluid page__container' %}
+{% set navbarContainerClass = navbarContainerClass or 'container-fluid' %}
+{% set navbarClass = navbarClass or 'navbar-light bg-body' %}
+{% set footer_bg = 'bg-white' %}
+{% set search_form = 'search-form--dark' %}
+{% set footer_logo = 'assets/images/logo/black-70@2x.png' %}
+{% set navbar_logo = 'assets/images/logo/accent-teal-100@2x.png' %}
+{% set drawerFile = drawerFile or 'website-drawer.html' %}
+
+{% set dashboards_menu = dashboards_menu or slug === 'analytics' %}
+{% set components_menu = 'ui-' in slug and 'ui-plugin-' not in slug %}
+{% set plugins_menu = 'ui-plugin-' in slug %}
+{% set account_menu = slug === 'login' or 'signup' in slug or 'password' in slug or 'edit-account' in slug or 'billing' in slug or slug === 'pricing' %}
+{% set enterprise_menu = slug === 'erp-dashboard' or slug === 'crm-dashboard' or slug === 'hr-dashboard' or slug === 'employees' or slug === 'staff' or slug === 'leaves' or slug === 'departments' or slug === 'documents' or slug === 'attendance' or slug === 'recruitment' or slug === 'payroll' or slug === 'training' or slug === 'employee-profile' or slug === 'accounting' or slug === 'inventory' %}
+{% set productivity_menu = slug === 'projects' or slug === 'tasks-board' or slug === 'tasks-list' or slug === 'kanban' or slug === 'task-details' or slug === 'team-members' %}
+{% set cms_menu = slug === 'cms-dashboard' or slug === 'posts' %}
+{% set ecommerce_menu = slug === 'ecommerce' %}
+{% set messaging_menu = slug === 'messages' or slug === 'email' %}
+{% set community_menu = 'discussion' in slug or slug === 'faq' or slug === 'slack' %}
+
+<body class="layout-{{ layout }} layout-sticky-subnav{% if 'ui-' in slug %} ui{% endif %} {{ bodyClass }}">
+
+  {% include 'layouts/_preloader.html' %}
+
+  <div class="mdk-drawer-layout js-mdk-drawer-layout" data-push data-responsive-width="992px">
+    <div class="mdk-drawer-layout__content page-content">
+
+      <!-- Header -->
+      {% block header %}
+        {% block navbar %}
+          {% if navbar !== false %}
+            {% include 'layouts/_navbar.html' %}
+          {% endif %}
+        {% endblock %}
+      {% endblock %}
+      <!-- // END Header -->
+
+      {% block pageHeader %}{% endblock %}
+
+      {% block submenu %}
+        {% if submenu %}
+          {% include 'pages/_' + submenu + '.submenu.html' ignore missing %}
+        {% else %}
+          {% include 'pages/_' + slug + '.submenu.html' ignore missing %}
+        {% endif %}
+      {% endblock %}
+      
+      {% block beforePage %}
+        {% if beforePage %}
+          {% include 'pages/_' + beforePage + '.beforePage.html' ignore missing %}
+        {% else %}
+          {% include 'pages/_' + slug + '.beforePage.html' ignore missing %}
+        {% endif %}
+      {% endblock %}
+
+      {% block page %}
+        {% include 'pages/_' + slug + '.html' %}
+      {% endblock %}
+      {% block afterPage %}{% endblock %}
+
+      {% if footer !== false %}
+        {% include 'layouts/_website-footer.html' %}
+      {% endif %}
+
+    </div>
+    <!-- // END drawer-layout__content -->
+
+    {% include 'layouts/_' + drawerFile ignore missing %}
+  </div>
+  <!-- // END drawer-layout -->
+
+  {% include 'layouts/_app-settings.html' %}
+  {% include 'layouts/_footer.html' %}
+
+  {% block footer %}
+    {% include 'pages/_' + slug + '.footer.html' ignore missing %}
+  {% endblock %}
+
+  {% include 'layouts/_app-settings.footer.html' %}
+</body>
+</html>

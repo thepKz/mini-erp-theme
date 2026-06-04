@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{{ title }}</title>
+
+  {% include 'layouts/_header.html' %}
+
+  {% block head %}
+    {% include 'pages/_' + slug + '.head.html' ignore missing %}
+  {% endblock %}
+
+</head>
+<body class="layout-app layout-sticky-subnav">
+
+  {% set brand = 'Huma' %}
+  {% set prefix = '' %}
+  {% set layout = 'app' %}
+  {% set containerClass = 'container-fluid page__container' %}
+  {% set navbarContainerClass = navbarContainerClass or 'container-fluid' %}
+  {% set navbarClass = 'bg-dark' %}
+  {% set footer_bg = 'bg-white' %}
+  {% set footer_heading_class = '' %}
+  {% set unlock_bg = 'bg-gradient-primary' %}
+  {% set alt_bg = '' %}
+  {% set navbar_class = 'navbar-dark' %}
+  {% set navbar_submenu_class = 'navbar-submenu navbar-light' %}
+  {% set search_form = 'search-form--dark' %}
+  {% set footer_logo = 'assets/images/logo/black-70@2x.png' %}
+  {% set navbar_logo = 'assets/images/logo/accent-red-100@2x.png' %}
+
+  {% set dashboards_menu = slug === 'index' or slug === 'staff' or slug === 'ecommerce' %}
+  {% set apps_menu = slug === 'trello' or slug === 'projects' or slug === 'event-calendar' %}
+  {% set pages_menu = slug === 'stories' or slug === 'invoice' or slug === 'pricing' %}
+  {% set components_menu = 'ui-' in slug %}
+  {% set account_menu = slug === 'login' or 'signup' in slug or 'password' in slug or 'edit-account' in slug or 'billing' in slug %}
+
+  {% include 'layouts/_preloader.html' %}
+
+  <!-- Header Layout -->
+  <div class="mdk-header-layout js-mdk-header-layout">
+
+    <!-- Header -->
+    {% block header %}
+      <div id="header" class="mdk-header bg-dark js-mdk-header {{ headerClass or 'mb-0' }}" 
+        data-effects="blend-background" data-fixed>
+        <div class="mdk-header__content">
+          {% block navbar %}
+            {% include 'layouts/_navbar.html' %}
+          {% endblock %}
+        </div>
+      </div>
+    {% endblock %}
+    <!-- // END Header -->
+
+    <!-- Header Layout Content -->
+    <div class="mdk-header-layout__content page-content {{ pageContentClass or '' }}">
+
+      <div class="mdk-drawer-layout js-mdk-drawer-layout" data-push data-responsive-width="992px">
+        <div class="mdk-drawer-layout__content page">
+
+          {% block pageHeader %}{% endblock %}
+
+          {% block submenu %}
+            {% if submenu %}
+              {% include 'pages/_' + submenu + '.submenu.html' ignore missing %}
+            {% else %}
+              {% include 'pages/_' + slug + '.submenu.html' ignore missing %}
+            {% endif %}
+          {% endblock %}
+          
+          {% block beforePage %}
+            {% if beforePage %}
+              {% include 'pages/_' + beforePage + '.beforePage.html' ignore missing %}
+            {% else %}
+              {% include 'pages/_' + slug + '.beforePage.html' ignore missing %}
+            {% endif %}
+          {% endblock %}
+
+          {% block page %}
+            {% include 'pages/_' + slug + '.html' ignore missing %}
+          {% endblock %}
+          {% block afterPage %}{% endblock %}
+
+          {% include 'layouts/_website-footer.html' %}
+
+        </div>
+        <!-- // END drawer-layout__content -->
+
+        {% include 'layouts/_website-drawer.html' %}
+      </div>
+      <!-- // END drawer-layout -->
+
+    </div>
+    <!-- // END Header Layout Content -->
+
+  </div>
+  <!-- // END Header Layout -->
+
+  {% include 'layouts/_app-settings.html' %}
+  {% include 'layouts/_footer.html' %}
+
+  {% block footer %}
+    {% include 'pages/_' + slug + '.footer.html' ignore missing %}
+  {% endblock %}
+</body>
+</html>

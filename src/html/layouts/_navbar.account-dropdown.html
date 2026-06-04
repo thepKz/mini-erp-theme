@@ -1,0 +1,16 @@
+<div class="nav-item dropdown d-none d-sm-flex">
+  <a href="#" class="nav-link d-flex align-items-center dropdown-toggle" data-toggle="dropdown">
+    <img width="32" height="32" class="rounded-circle mr-8pt" src="assets/images/people/50/guy-3.jpg" alt="account" />
+    <span class="flex d-flex flex-column mr-8pt">
+      <span class="navbar-text-100">Laza Bogdan</span>
+      <small class="navbar-text-50">Administrator</small>
+    </span>
+  </a>
+  <div class="dropdown-menu dropdown-menu-right">
+    <div class="dropdown-header"><strong>Account</strong></div>
+    <a class="dropdown-item{% if slug === 'edit-account' %} active{% endif %}" href="{{ prefix or '' }}edit-account.html">Edit Account</a>
+    <a class="dropdown-item{% if slug === 'billing' %} active{% endif %}" href="{{ prefix or '' }}billing.html">Billing</a>
+    <a class="dropdown-item{% if slug === 'billing-history' %} active{% endif %}" href="{{ prefix or '' }}billing-history.html">Payments</a>
+    <a class="dropdown-item" href="{{ prefix or '' }}login.html">Logout</a>
+  </div>
+</div>

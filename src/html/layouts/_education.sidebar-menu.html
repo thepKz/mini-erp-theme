@@ -1,0 +1,18 @@
+<li class="sidebar-menu-item{% if student_menu %} active open{% endif %}">
+  <a class="sidebar-menu-button" data-toggle="collapse" href="#student_menu">
+    <span class="sidebar-menu-text">Student</span>
+    <span class="ml-auto sidebar-menu-toggle-icon"></span>
+  </a>
+  <ul class="sidebar-submenu collapse{% if student_menu %} show{% endif %} sm-indent" id="student_menu">
+    {% include 'layouts/_student.sidebar-menu.html' %}
+  </ul>
+</li>
+<li class="sidebar-menu-item{% if instructor_menu %} active open{% endif %}">
+  <a class="sidebar-menu-button" data-toggle="collapse" href="#instructor_menu">
+    <span class="sidebar-menu-text">Instructor</span>
+    <span class="ml-auto sidebar-menu-toggle-icon"></span>
+  </a>
+  <ul class="sidebar-submenu collapse{% if instructor_menu %} show{% endif %} sm-indent" id="instructor_menu">
+    {% include 'layouts/_instructor.sidebar-menu.html' %}
+  </ul>
+</li>

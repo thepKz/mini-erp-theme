@@ -1,0 +1,27 @@
+{% extends 'layouts/account.html' %}
+
+{% block page %}
+<div class="{{ containerClass or 'container' }}">
+  <form action="{{ prefix or '' }}edit-account.html">
+    <div class="row">
+      <div class="col-lg-9 pr-lg-0">
+        {{ super() }}
+      </div>
+      <div class="col-lg-3 page-nav">
+        <div class="page-section pt-lg-112pt">
+          <nav class="nav page-nav__menu">
+            <a class="nav-link{% if slug === 'billing' %} active{% endif %}" href="{{ prefix or '' }}billing.html">Subscription</a>
+            <a class="nav-link{% if slug === 'billing-upgrade' %} active{% endif %}" href="{{ prefix or '' }}billing-upgrade.html">Upgrade Account</a>
+            <a class="nav-link{% if slug === 'billing-payment' %} active{% endif %}" href="{{ prefix or '' }}billing-payment.html">Payment Information</a>
+            <a class="nav-link{% if slug === 'billing-history' %} active{% endif %}" href="{{ prefix or '' }}billing-history.html">Payment History</a>
+            <a class="nav-link{% if slug === 'billing-invoice' %} active{% endif %}" href="{{ prefix or '' }}billing-invoice.html">Invoice</a>
+          </nav>
+          <!-- <div class="page-nav__content">
+            <button type="submit" class="btn btn-accent">Save changes</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

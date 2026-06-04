@@ -1,0 +1,73 @@
+{% import 'components/avatar.html' as avatar %}
+
+<div class="navbar navbar-expand{% if layout !== 'default' %} navbar-shadow{% endif %} px-0 {% if layout !== 'default' %} pl-lg-16pt{% endif %} {{ navbarClass or '' }}" id="default-navbar" data-primary>
+
+  <!-- Navbar toggler -->
+  <button class="navbar-toggler d-block{% if layout !== 'default' %} d-lg-none{% endif %} rounded-0" type="button" data-toggle="sidebar">
+    <span class="material-icons">menu</span>
+  </button>
+
+  <!-- Navbar Brand -->
+  <a href="index.html" class="navbar-brand mr-16pt{% if layout === 'app' or layout === 'boxed'  %} d-lg-none{% endif %}">
+    <img class="navbar-brand-icon mr-0 mr-lg-8pt" src="{{ navbar_logo }}" width="32" alt="{{ brand }}">
+    <span class="d-none d-lg-block">{{ brand }}</span>
+  </a>
+
+  <!-- <button class="btn navbar-btn mr-16pt{% if layout === 'mini' or layout === 'compact' %} ml-md-16pt{% endif %}" data-toggle="modal" data-target="#apps">Apps <i class="material-icons">arrow_drop_down</i></button> -->
+
+  {% if navbar_search !== false %}
+  <form class="search-form navbar-search d-none d-md-flex mr-16pt" action="{{ prefix }}index.html">
+    <button class="btn" type="submit"><i class="material-icons">search</i></button>
+    <input type="text" class="form-control" placeholder="Search ...">
+  </form>
+  {% endif %}
+
+  <div class="flex"></div>
+
+  <div class="nav navbar-nav flex-nowrap d-none d-lg-flex mr-16pt" style="white-space: nowrap;">
+    <div class="nav-item dropdown d-none d-sm-flex">
+      <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">EN</a>
+      <div class="dropdown-menu dropdown-menu-right">
+        <div class="dropdown-header"><strong>Select language</strong></div>
+        <a class="dropdown-item active" href="">English</a>
+        <a class="dropdown-item" href="">French</a>
+        <a class="dropdown-item" href="">Romanian</a>
+        <a class="dropdown-item" href="">Spanish</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav navbar-nav flex-nowrap d-flex ml-0 mr-16pt">
+    {% include "layouts/_navbar.account-dropdown.html" %}
+    {% include "layouts/_navbar.notifications.html" %}
+    {% include "layouts/_navbar.messages.html" %}
+  </div>
+
+  <div class="dropdown border-left-2 navbar-border">
+    <button class="navbar-toggler navbar-toggler-custom d-block" type="button" data-toggle="dropdown" data-caret="false">
+      <span class="material-icons">business_center</span>
+    </button>
+    <div class="dropdown-menu dropdown-menu-right">
+      <div class="dropdown-header"><strong>Select company</strong></div>
+      <a href="" class="dropdown-item active d-flex align-items-center">
+        {{ avatar.component(title='FM', size='sm', class='mr-8pt', title_class='bg-primary', circle=false) }}
+        <small class="ml-4pt flex">
+          <span class="d-flex flex-column">
+            <strong class="text-black-100">FrontendMatter Inc.</strong>
+            <span class="text-black-50">Administrator</span>
+          </span>
+        </small>
+      </a>
+      <a href="" class="dropdown-item d-flex align-items-center">
+        {{ avatar.component(title='HH', size='sm', class='mr-8pt', title_class='bg-accent', circle=false) }}
+        <small class="ml-4pt flex">
+          <span class="d-flex flex-column">
+            <strong class="text-black-100">HumaHuma Inc.</strong>
+            <span class="text-black-50">Publisher</span>
+          </span>
+        </small>
+      </a>
+    </div>
+  </div>
+  
+</div>

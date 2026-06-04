@@ -1,0 +1,15 @@
+<!-- App Settings FAB -->
+<div id="app-settings"> 
+  <app-settings
+    layout-active="{{ layout }}"
+    :layout-location="{
+      'compact': 'compact-{{ slug }}.html',
+      'mini': 'mini-{{ slug }}.html',
+      'app': '{{ slug }}.html',
+      'boxed': 'boxed-{{ slug }}.html',
+      'sticky': 'sticky-{{ slug }}.html',
+      'default': 'fixed-{{ slug }}.html'
+    }"
+    sidebar-type="light" 
+    sidebar-variant="bg-body"></app-settings>
+</div>
