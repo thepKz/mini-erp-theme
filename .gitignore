@@ -8,3 +8,4 @@ dist/assets/fonts
 /mix-manifest.json
 /temp
 .htmllint
+dist
